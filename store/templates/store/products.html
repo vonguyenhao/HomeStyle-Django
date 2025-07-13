@@ -1,0 +1,136 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}HomeStyle - Product Listings{% endblock %}
+
+{% block content %}
+<div class="container">
+    <aside class="sidebar">
+        <button class="mobile-close-btn">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="categories">
+            <h3>Categories</h3>
+            <div class="category-item">
+                <div class="category-header active" data-category="living-room">
+                    <span>Living Room</span>
+                    <span class="toggle-btn">-</span>
+                </div>
+                <div class="subcategories active">
+                    <div class="subcategory" data-subcategory="sofas">Sofa Collection</div>
+                    <div class="subcategory" data-subcategory="tables">Coffee Table Collection</div>
+                </div>
+            </div>
+            <div class="category-item">
+                <div class="category-header" data-category="bedroom">
+                    <span>Bedroom</span>
+                    <span class="toggle-btn">+</span>
+                </div>
+                <div class="subcategories">
+                    <div class="subcategory" data-subcategory="beds">Bed Collection</div>
+                    <div class="subcategory" data-subcategory="wardrobes">Cloth Shelves Collection</div>
+                    <div class="subcategory" data-subcategory="dressing">Dressing Table Collection</div>
+                </div>
+            </div>
+            <div class="category-item">
+                <div class="category-header" data-category="dining">
+                    <span>Dining Room</span>
+                    <span class="toggle-btn">+</span>
+                </div>
+                <div class="subcategories">
+                    <div class="subcategory" data-subcategory="tables">Dining Tables Collection</div>
+                    <div class="subcategory" data-subcategory="chairs">Chairs Collection</div>
+                    <div class="subcategory" data-subcategory="buffets">Cabinets Collection</div>
+                </div>
+            </div>
+            <div class="category-item">
+                <div class="category-header" data-category="bathroom">
+                    <span>Bathroom</span>
+                    <span class="toggle-btn">+</span>
+                </div>
+                <div class="subcategories">
+                    <div class="subcategory" data-subcategory="vanities">Bathroom Vanities</div>
+                    <div class="subcategory" data-subcategory="cabinets">Mirror Cabinets</div>
+                    <div class="subcategory" data-subcategory="storage">Storage Collection</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="price-filter">
+            <h3 class="filter-title">PRICE <i class="fas fa-chevron-up"></i></h3>
+            <div class="price-slider-container">
+                <div class="price-slider">
+                    <div class="slider-track"></div>
+                    <input type="range" min="0" max="2000" value="0" class="slider" id="slider-min">
+                    <input type="range" min="0" max="2000" value="2000" class="slider" id="slider-max">
+                </div>
+                <div class="price-inputs">
+                    <div class="price-input">
+                        <span>$</span>
+                        <input type="number" id="min-price" value="0">
+                    </div>
+                    <span class="price-separator">to</span>
+                    <div class="price-input">
+                        <span>$</span>
+                        <input type="number" id="max-price" value="2000">
+                    </div>
+                </div>
+                <button id="apply-price-filter" class="apply-button">APPLY</button>
+            </div>
+        </div>
+    </aside>
+
+    <main class="products">
+        <h1 class="page-title">Living Room Furniture</h1>
+        <div class="products-grid" id="products-container">
+            <!-- Products will be loaded here dynamically -->
+        </div>
+    </main>
+</div>
+
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeProductModal()">×</span>
+        <div class="modal-product-view">
+            <div class="modal-product-image">
+                <img id="modalProductImage" src="" alt="Product Image">
+            </div>
+            <div class="modal-product-details">
+                <h2 id="modalProductName"></h2>
+                <div class="price" id="modalProductPrice"></div>
+                <div class="description">
+                    <p id="modalProductDescription">Premium quality furniture designed for comfort and style.</p>
+                </div>
+                <div class="quantity-selector">
+                    <label for="quantity">Quantity:</label>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" id="quantity" value="1" min="1">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                </div>
+                <div class="delivery-options">
+                    <label>Delivery Option:</label>
+                    <select id="modalDeliveryOption">
+                        <option value="standard">Standard Delivery (3-5 days)</option>
+                        <option value="express">Express Delivery (1-2 days)</option>
+                        <option value="pickup">Store Pickup</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i> Add to Wishlist</button>
+                    <button class="buy-now-btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/productsData.js' %}"></script>
+<script src="{% static 'js/products.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/product-modal.js' %}"></script>
+<script src="{% static 'js/home-products.js' %}"></script>
+{% endblock %}

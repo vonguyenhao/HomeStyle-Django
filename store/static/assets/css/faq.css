@@ -1,0 +1,108 @@
+/* FAQ SECTION STYLES */
+
+.faq-page {
+  background-color: #f4f4f4;
+  padding: 60px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.faq-header {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.faq-header h1 {
+  font-size: 2.2rem;
+  color: #222;
+  margin-bottom: 12px;
+}
+
+.faq-header p {
+  font-size: 1rem;
+  color: #444;
+}
+
+.faq-item {
+  background-color: #ffffff;
+  color: #333;
+  max-width: 900px;
+  margin: 0 auto 25px;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.faq-item h2 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: #ff914d;
+}
+
+.faq-item p {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.faq-item ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.faq-item li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.faq-item a {
+  color: #ff914d;
+  text-decoration: underline;
+}
+
+.faq-item a:hover,
+.faq-item a:focus {
+  color: #e57725;
+  outline: none;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
+  .faq-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .faq-item h2 {
+    font-size: 1.1rem;
+  }
+
+  .faq-item p,
+  .faq-item li {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .faq-header {
+    padding: 0 10px;
+  }
+
+  .faq-item {
+    padding: 18px 16px;
+  }
+
+  .faq-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .faq-item h2 {
+    font-size: 1rem;
+  }
+
+  .faq-item p,
+  .faq-item li {
+    font-size: 0.9rem;
+  }
+}
