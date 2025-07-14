@@ -1,0 +1,165 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Contact Us - HomeStyle{% endblock %}
+
+{% block content %}
+
+<!-- Website Introduction Section -->
+<section class="contact-intro">
+  <div class="intro-header">
+    <h1>Welcome to HomeStyle</h1>
+    <p>HomeStyle is your trusted destination for quality furniture tailored to the unique lifestyles of Darwin and
+      Northern Territory residents.</p>
+  </div>
+
+  <div class="intro-wrapper">
+    <h2>What We Offer</h2>
+    <ul>
+      <li>Room-based browsing experience (Living Room, Bedroom, Kitchen, etc.)</li>
+      <li>Bundle deals for coordinated furniture savings</li>
+      <li>Clear delivery options and support</li>
+      <li>Mobile-first responsive design for smooth browsing</li>
+    </ul>
+  </div>
+
+  <div class="intro-wrapper">
+    <h2>Why Choose Us?</h2>
+    <ul>
+      <li>Designed for regional customers with real feedback</li>
+      <li>Quick and simple checkout process</li>
+      <li>Reliable customer support and service access</li>
+      <li>Accessible design that supports screen readers and ease of navigation</li>
+    </ul>
+    <p>We believe furniture shopping should be easy, engaging, and supportive. Explore our site to find your perfect
+      setup, and reach out to us anytime!</p>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-page" aria-labelledby="contact-heading">
+  <div class="contact-header">
+    <h2 id="contact-heading">Contact Us</h2>
+    <p>We're here to help. Choose the method that best suits you.</p>
+  </div>
+
+  <div class="service-grid">
+    <!-- Call Us -->
+    <div class="service-card">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="service-icon" aria-hidden="true"><i class="fas fa-phone"></i></div>
+          <h3>Call Us</h3>
+          <p>+61 123 456 789<br>Mon–Fri 9am–5pm (NT)</p>
+          <button class="select-service-btn" aria-label="Call us now">Call Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email Us -->
+    <div class="service-card">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="service-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
+          <h3>Email Us</h3>
+          <p>Send us your queries anytime.<br>We’ll respond shortly.</p>
+          <button class="select-service-btn clickable" data-popup="email-popup" aria-label="Open email form">Send
+            Email</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQs -->
+    <div class="service-card">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="service-icon" aria-hidden="true"><i class="fas fa-comments"></i></div>
+          <h3>FAQs</h3>
+          <p>Find answers to common questions<br>about orders, delivery, and returns.</p>
+          <a href="{% url 'faq' %}"><button class="select-service-btn">View FAQs</button></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inquiry -->
+    <div class="service-card">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="service-icon" aria-hidden="true"><i class="fas fa-question-circle"></i></div>
+          <h3>Make an Inquiry</h3>
+          <p>Send us detailed questions.<br>We’ll follow up soon.</p>
+          <button class="select-service-btn clickable" data-popup="inquiry-popup" aria-label="Open inquiry form">Make
+            Inquiry</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Email Form -->
+<div class="popup-form" id="email-popup" role="dialog" aria-labelledby="emailFormTitle" aria-modal="true">
+  <div class="popup-content">
+    <span class="close-popup" aria-label="Close form">&times;</span>
+    <h2 id="emailFormTitle">Email Us</h2>
+    <form id="emailForm">
+      <label for="email-name">Name</label>
+      <input type="text" id="email-name" name="email-name" required>
+      <label for="email-email">Email</label>
+      <input type="email" id="email-email" name="email-email" required>
+      <label for="email-message">Message</label>
+      <textarea id="email-message" name="email-message" rows="6" required></textarea>
+      <button type="submit">Send</button>
+      <p id="email-success" style="display:none;color:green;margin-top:10px;">✅ Message sent successfully!</p>
+    </form>
+  </div>
+</div>
+
+<!-- Inquiry Form -->
+<div class="popup-form" id="inquiry-popup" role="dialog" aria-labelledby="inquiryFormTitle" aria-modal="true">
+  <div class="popup-content">
+    <span class="close-popup" aria-label="Close form">×</span>
+    <h2 id="inquiryFormTitle">Make Inquiry</h2>
+    <form id="inquiryForm">
+      <label for="inquiry-first-name">First Name</label>
+      <input type="text" id="inquiry-first-name" name="inquiry-first-name" required>
+
+      <label for="inquiry-last-name">Last Name</label>
+      <input type="text" id="inquiry-last-name" name="inquiry-last-name" required>
+
+      <label for="inquiry-mobile">Mobile Number</label>
+      <input type="tel" id="inquiry-mobile" name="inquiry-mobile" pattern="[0-9]{10}" placeholder="e.g., 0412345678"
+        required>
+
+      <label for="inquiry-email">Email</label>
+      <input type="email" id="inquiry-email" name="inquiry-email" required>
+
+      <label for="inquiry-subject">Subject</label>
+      <div class="sybject-dropdown" id="dropdown-wrapper">
+        <button type="button" class="dropdown-toggle" id="dropdownButton">-- Select a subject --</button>
+        <ul class="dropdown-options" id="dropdownList">
+          <li data-value="product">Inquiry about product</li>
+          <li data-value="order">Order status</li>
+          <li data-value="general">General</li>
+          <li data-value="other">Other</li>
+        </ul>
+        <input type="hidden" name="inquiry-subject" id="inquiry-subject" required>
+      </div>
+
+      <label for="inquiry-message">Your Inquiry</label>
+      <textarea id="inquiry-message" name="inquiry-message" rows="6" required></textarea>
+
+      <button type="submit">Submit Inquiry</button>
+      <p id="inquiry-success" style="display:none;color:green;margin-top:10px;">Inquiry sent successfully!</p>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'assets/js/contact.js' %}" defer></script>
+<script src="{% static 'assets/js/script.js' %}" defer></script>
+<script src="{% static 'assets/js/home-products.js' %}"></script>
+<script src="{% static 'assets/js/product-modal.js' %}"></script>
+<script src="{% static 'assets/js/products.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}FAQs - HomeStyle Furniture{% endblock %}
+
+{% block content %}
+
+<section class="faq-page" aria-labelledby="faq-heading">
+  <div class="faq-header">
+    <h1 id="faq-heading">Frequently Asked Questions</h1>
+    <p>Find answers to common questions about <strong>HomeStyle’s</strong> furniture, delivery, services, and more. If
+      your question isn’t listed here, feel free to contact us directly!</p>
+  </div>
+
+  <div class="faq-item">
+    <h2>1. What types of furniture does HomeStyle offer?</h2>
+    <p>We offer a wide variety of furniture for Living Rooms, Bedrooms, Dining Areas, and Bathrooms. From sofas and
+      beds to vanities and cabinets, all our items are curated to fit modern lifestyles and local preferences.</p>
+  </div>
+
+  <div class="faq-item">
+    <h2>2. Do you deliver to rural areas outside Darwin?</h2>
+    <p>Yes! We deliver across the Northern Territory including some remote areas. Delivery times and fees may vary
+      based on your location.</p>
+  </div>
+
+  <div class="faq-item">
+    <h2>3. How long does delivery take?</h2>
+    <p>Delivery typically takes <strong>3–7 business days</strong> within Darwin. For outer areas, it may take longer.
+      We will confirm estimated delivery when you place your order.</p>
+  </div>
+
+  <div class="faq-item">
+    <h2>4. Can I return or exchange a product?</h2>
+    <p>Yes, we offer a hassle-free return and exchange policy to ensure your satisfaction.</p>
+    <ul>
+      <li><strong>Return Period:</strong> Products can be returned within <strong>14 days</strong> of delivery.</li>
+      <li><strong>Condition:</strong> Items must be unused, in their original packaging, and in resalable condition.
+        All tags, manuals, and accessories must be included.</li>
+      <li><strong>Exclusions:</strong> Customized, clearance, and assembled items cannot be returned unless faulty or
+        damaged.</li>
+      <li><strong>Refunds:</strong> Once the returned item is inspected and approved, refunds will be issued to your
+        original payment method within 5–7 business days.</li>
+      <li><strong>Exchanges:</strong> You can request an exchange for a different size or color. Exchanges are subject
+        to product availability.</li>
+      <li><strong>Return Shipping:</strong> Customers are responsible for return shipping costs unless the item was
+        defective or sent in error.</li>
+      <li><strong>Damaged or Incorrect Items:</strong> If you receive a damaged or wrong item, please contact us
+        within 48 hours for a full replacement or refund.</li>
+    </ul>
+    <p>For assistance with returns or exchanges, please contact our support team via email or use the inquiry form on
+      the <a href="contact.html">Contact Us</a> page.</p>
+  </div>
+
+  <div class="faq-item">
+    <h2>5. Is Afterpay available for all purchases?</h2>
+    <p>Afterpay is available for orders above $100. Simply select Afterpay at checkout to split your payments into
+      four easy installments.</p>
+  </div>
+
+  <div class="faq-item">
+    <h2>6. How do I contact customer service?</h2>
+    <p>You can email us via the <a href="contact.html">Contact Us</a> page, chat with us when online, or call us
+      directly during business hours at +61 123 456 789.</p>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'assets/js/products.js' %}"></script>
+<script src="{% static 'assets/js/product-modal.js' %}"></script>
+<script src="{% static 'assets/js/home-products.js' %}"></script>
+{% endblock %}

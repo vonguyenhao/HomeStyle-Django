@@ -1,0 +1,201 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}HomeStyle - Modern Furniture Store {% endblock %}
+
+{% block content %}
+<section class="hero-slider">
+  <!-- Slide 1 -->
+  <div class="slide active">
+    <picture>
+      <img src="{% static 'assets/images/products/dining_room/buffet6.jpg' %}" alt="Living Room Sofa and Coffee Table"
+        width="1440" height="800" loading="eager" />
+    </picture>
+    <div class="hero-content">
+      <h2>Living Room</h2>
+      <p>Explore stylish sofas and modern coffee tables</p>
+      <a href="products.html?category=living-room&subcategory=sofas" class="shop-button">SHOP NOW</a>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <picture>
+      <img src="{% static 'assets/images/products/living_room/sofa.jpg' %}" alt="Comfortable Bedroom Bed and Wardrobe"
+        width="1440" height="800" loading="lazy" />
+    </picture>
+    <div class="hero-content">
+      <h2>Bed Room</h2>
+      <p>Comfortable beds and wardrobes for restful nights</p>
+      <a href="products.html?category=bedroom&subcategory=beds" class="shop-button">SHOP NOW</a>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide">
+    <picture>
+      <img src="{% static 'assets/images/products/dining_room/table4.jpg' %}" alt="Modern Dining Table and Chairs"
+        width="1440" height="800" loading="lazy" />
+    </picture>
+    <div class="hero-content">
+      <h2>Dining</h2>
+      <p>Modern Dining designed to inspire your inner chef</p>
+      <a href="products.html?category=dining&subcategory=tables" class="shop-button">SHOP NOW</a>
+    </div>
+  </div>
+
+  <!-- Slide 4 -->
+  <div class="slide">
+    <picture>
+      <img src="{% static 'assets/images/products/bathroom/bathroom_1_alt.jpg' %}"
+        alt="Elegant Bathroom Vanities and Storage" width="1440" height="800" loading="lazy" />
+    </picture>
+    <div class="hero-content">
+      <h2>Bath Room</h2>
+      <p>Elegant vanities, mirrors, and bathroom storage</p>
+      <a href="products.html?category=bathroom&subcategory=vanities" class="shop-button">SHOP NOW</a>
+    </div>
+  </div>
+
+  <!-- Slide 5 -->
+  <div class="slide">
+    <picture>
+      <source srcset="{% static 'assets/images/products/our_business.webp' %}" type="image/webp">
+      <img src="{% static 'assets/images/products/our_business.jpg' %}" alt="Meet the HomeStyle Team and Our Values"
+        width="1440" height="800" loading="lazy" />
+    </picture>
+    <div class="hero-content">
+      <h2>Our Business</h2>
+      <p>Learn more about our team and what we value</p>
+      <a href="contact.html" class="shop-button">Get To Know</a>
+    </div>
+  </div>
+
+  <!-- Navigation arrows -->
+  <button class="nav-arrow left" onclick="prevSlide()" aria-label="Previous Slide">&#10094;</button>
+  <button class="nav-arrow right" onclick="nextSlide()" aria-label="Next Slide">&#10095;</button>
+</section>
+
+
+<!-- Main Content With Side Ads -->
+<div class="content-with-ads">
+
+  <aside class="ad-left">
+    <img src="{% static 'assets/images/products/ad-left.webp' %}" alt="Advertisement Left">
+  </aside>
+
+  <div class="main-content">
+
+    <!-- Best Sellers Section -->
+    <section class="best-sellers">
+      <h2 class="section-title">Best Sellers</h2>
+      <main class="product-grid">
+        <!-- Product Card 1 -->
+        <article class="product-card" tabindex="0" aria-label="3-Seater Sofa Set, $550">
+          <figure class="image-container bundle-container"
+            data-images="{% static 'assets/products/living_room/sofa6.jpg' %},{% static 'images/products/living_room/sofa3.jpg' %}">
+            <img src="{% static 'assets/images/products/living_room/sofa5.jpg' %}" alt="3-Seater Sofa Set"
+              class="bundle-image" loading="lazy" />
+            <button class="wishlist-btn" aria-label="Add to Wishlist"><i class="far fa-heart"></i></button>
+          </figure>
+          <section class="product-info">
+            <h2>3-Seater Sofa Set</h2>
+            <p class="category">Bundle Deal</p>
+            <div class="price-cart-row">
+              <p class="price">$550 <span style="color: green;">(Save 30%)</span></p>
+              <button class="cart-icon" aria-label="Add to Cart"><i class="fas fa-shopping-cart"></i></button>
+            </div>
+            <p class="details">Fabric | 210cm x 85cm</p>
+          </section>
+        </article>
+
+        <!-- Product Card 2 -->
+        <article class="product-card" tabindex="0" aria-label="Bedside Table Set, $195">
+          <figure class="image-container bundle-container"
+            data-images="{% static 'assets/images/products/bedroom/bed5.jpg' %},{% static 'images/products/bedroom/bed3.jpg' %}">
+            <img src="{% static 'assets/images/products/bedroom/bed1.jpg' %}" alt="Bedside Table Set"
+              class="bundle-image" loading="lazy" />
+            <button class="wishlist-btn" aria-label="Add to Wishlist"><i class="far fa-heart"></i></button>
+          </figure>
+          <section class="product-info">
+            <h2>Bed Bundle Set</h2>
+            <p class="category">Bundle Deal</p>
+            <div class="price-cart-row">
+              <p class="price">$195 <span style="color: green;">(Save 45%)</span></p>
+              <button class="cart-icon" aria-label="Add to Cart"><i class="fas fa-shopping-cart"></i></button>
+            </div>
+            <p class="details">Bed Frame + Mattress</p>
+          </section>
+        </article>
+
+        <!-- Product Card 3 -->
+        <article class="product-card" tabindex="0" aria-label="Living Room Set, $1190">
+          <figure class="image-container bundle-container"
+            data-images="{% static 'assets/products/living_room/sofa6.jpg' %},{% static 'images/products/living_room/table4.jpg' %},{% static 'images/products/living_room/sofa2.jpg' %},{% static 'images/products/living_room/table5.jpg' %}">
+            <img src="{% static 'assets/images/products/living_room/sofa3.jpg' %}" alt="Living Room Set"
+              class="bundle-image" loading="lazy" />
+            <button class="wishlist-btn" aria-label="Add to Wishlist"><i class="far fa-heart"></i></button>
+          </figure>
+          <section class="product-info">
+            <h2>Living Room Set</h2>
+            <p class="category">Bundle Deal</p>
+            <div class="price-cart-row">
+              <p class="price">$1190 <span style="color: green;">(Save 15%)</span></p>
+              <button class="cart-icon" aria-label="Add to Cart"><i class="fas fa-shopping-cart"></i></button>
+            </div>
+            <p class="details">Sofa + Table</p>
+          </section>
+        </article>
+
+        <!-- Product Card 4 -->
+        <article class="product-card" tabindex="0" aria-label="Bedroom + Living Room Set, $1790">
+          <figure class="image-container bundle-container"
+            data-images="{% static 'assets/products/bedroom/wardrobe5.jpg' %},{% static 'images/products/living_room/sofa3.jpg' %},{% static 'images/products/bedroom/bed5.jpg' %},{% static 'images/products/bedroom/dressing6.jpg' %}">
+            <img src="{% static 'assets/images/products/bedroom/dressing6.jpg' %}" alt="Bedroom + Living Room"
+              class="bundle-image" loading="lazy" />
+            <button class="wishlist-btn" aria-label="Add to Wishlist"><i class="far fa-heart"></i></button>
+          </figure>
+          <section class="product-info">
+            <h2>Bedroom Set</h2>
+            <p class="category">Bundle Deal</p>
+            <div class="price-cart-row">
+              <p class="price">$1790 <span style="color: green;">(Save 20%)</span></p>
+              <button class="cart-icon" aria-label="Add to Cart"><i class="fas fa-shopping-cart"></i></button>
+            </div>
+            <p class="details">Sofa + Bed Frame</p>
+          </section>
+        </article>
+      </main>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="customer-reviews" id="reviews">
+      <h2 class="section-title">Hear from our Happy Clients</h2>
+      <div class="reviews-container">
+        <div class="review-card">
+          <h3>Glenn Quagmire</h3>
+          <p>“I wanted to reach out and thank you for the amazing support... You really helped us achieve the look we
+            wanted”</p>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="review-card">
+          <h3>Cleveland Brown</h3>
+          <p>“I will definitely be recommending HomeStyle to anyone considering a bedroom upgrade!”</p>
+          <div class="stars">★★★★</div>
+        </div>
+        <div class="review-card">
+          <h3>Peter Griffin</h3>
+          <p>“The selection we chose has completely transformed the bathroom and we couldn’t be happier”</p>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Right Advertisement -->
+  <aside class="ad-right">
+    <img src="{% static 'assets/images/products/ad-right.webp' %}" alt="Advertisement Right">
+  </aside>
+</div>
+{% endblock %}

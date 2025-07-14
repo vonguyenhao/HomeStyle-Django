@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}HomeStyle - Modern Furniture Store{% endblock %}</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/components-drawer.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/product-modal.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/products.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/contact.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/faq.css' %}" />
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'assets/images/icons/favicon.ico' %}">
+</head>
+
+<body>
+    <div class="topbar">
+        <p>Free delivery for orders above $500 in Darwin CBD</p>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                <img src="{% static 'assets/images/icons/icon_menu.png' %}" alt="Menu" />
+            </button>
+            <a href="/" class="brand-name">HomeStyle</a>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+            <li><a href="/products/?category=living-room&subcategory=sofas">Living Room</a></li>
+            <li><a href="/products/?category=bedroom&subcategory=beds">Bed Room</a></li>
+            <li><a href="/products/?category=dining&subcategory=tables">Dining</a></li>
+            <li><a href="/products/?category=bathroom&subcategory=vanities">Bath Room</a></li>
+            <li><a href="/contact/">Our Business</a></li>
+        </ul>
+        <div class="nav-icons">
+            <a href="#" id="search-toggle"><i class="fas fa-search icon"></i></a>
+            <div id="search-container">
+                <form id="search-form" onsubmit="return handleSearch(event)">
+                    <input type="text" id="search-input" placeholder="Search products..." />
+                    <button type="button" id="close-search">×</button>
+                </form>
+            </div>
+            <a href="#" onclick="openDrawer('login-panel')"><i class="far fa-user icon"></i></a>
+            <a href="#" onclick="openDrawer('wishlist-panel')"><i class="far fa-heart icon"></i></a>
+            <div class="cart-wrapper">
+                <a href="#" onclick="openDrawer('cart-panel')">
+                    <i class="fas fa-shopping-cart icon"></i>
+                </a>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" onclick="toggleMobileMenu()">×</button>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products/?category=living-room&subcategory=sofas">Living Room</a></li>
+            <li><a href="/products/?category=bedroom&subcategory=beds">Bed Room</a></li>
+            <li><a href="/products/?category=dining&subcategory=tables">Dining</a></li>
+            <li><a href="/products/?category=bathroom&subcategory=vanities">Bathroom</a></li>
+            <li><a href="/contact/">Our Business</a></li>
+        </ul>
+        <div class="mobile-icons">
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#" onclick="openDrawer('login-panel')"><i class="far fa-user"></i></a>
+            <a href="#" onclick="openDrawer('wishlist-panel')"><i class="far fa-heart"></i></a>
+            <a href="#" onclick="openDrawer('cart-panel')">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </div>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-brand">
+            <h2>HomeStyle</h2>
+            <p>Your trusted furniture destination in Darwin</p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="{% static 'assets/js/script.js' %}"></script>
+    <script src="{% static 'assets/js/components-loader.js' %}"></script>
+    <script src="{% static 'assets/js/home-products.js' %}"></script>
+    <script src="{% static 'assets/js/product-modal.js' %}"></script>
+    <script src="{% static 'assets/js/home-products.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

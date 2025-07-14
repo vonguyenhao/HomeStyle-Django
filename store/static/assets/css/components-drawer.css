@@ -1,0 +1,136 @@
+/* --- DRAWER PANEL CONTAINER --- */
+.drawer-panel {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  height: 100vh;
+  background: white;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  overflow-y: auto;
+  animation: drawerFadeIn 0.3s ease-in-out;
+}
+
+.drawer-panel.show {
+  display: block;
+  animation: drawerSlideIn 0.3s ease forwards;
+}
+
+@keyframes drawerSlideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes drawerFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- DRAWER INNER CONTENT --- */
+.drawer-content {
+  padding: 40px 30px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.drawer-content h2 {
+  font-size: 24px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.drawer-content label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #333;
+}
+
+.drawer-content input,
+.drawer-content textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  box-sizing: border-box;
+}
+
+.drawer-content ul {
+  padding-left: 18px;
+  font-size: 15px;
+  color: #444;
+}
+
+.drawer-content p {
+  font-size: 15px;
+  color: #333;
+}
+
+/* --- BUTTONS --- */
+.primary-btn {
+  width: 100%;
+  background-color: #f4b840;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.primary-btn:hover {
+  background-color: #f39c12;
+}
+
+.secondary-btn {
+  width: 100%;
+  background: white;
+  color: black;
+  border: 2px solid black;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.secondary-btn:hover {
+  background-color: #f4f4f4;
+}
+
+.small-link {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 15px;
+  color: #555;
+}
+
+/* --- CLOSE ICON --- */
+.drawer-close {
+  position: absolute;
+  top: 18px;
+  right: 25px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #999;
+}
+
+.drawer-close:hover {
+  color: #111;
+}
