@@ -9,7 +9,7 @@ function closeDrawer(id) {
 }
 
 function loadDrawerComponents() {
-  fetch('assets/components/components.html')
+  fetch('/static/assets/components/components.html')
     .then(res => res.text())
     .then(html => {
       const wrapper = document.createElement('div');
