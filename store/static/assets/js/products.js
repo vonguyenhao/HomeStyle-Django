@@ -49,6 +49,34 @@ const getUrlParams = () => {
     return { category, subcategory, search };
 };
 
+let productsData = {};
+
+function groupProductsByCategory(products) {
+    const grouped = {};
+    products.forEach(p => {
+        if (!grouped[p.category]) grouped[p.category] = {};
+        if (!grouped[p.category][p.subcategory]) grouped[p.category][p.subcategory] = [];
+        grouped[p.category][p.subcategory].push(p);
+    });
+    return grouped;
+}
+
+fetch('/api/products/')
+    .then(res => res.json())
+    .then(data => {
+        productsData = groupProductsByCategory(data.products);
+        document.addEventListener('DOMContentLoaded', () => {
+            if (DOM.productsContainer) initProductsPage();
+            else setupSearchEventListeners();
+        });
+    })
+    .catch(err => {
+        console.error('Failed to load products from API:', err);
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('products-container').innerHTML = '<p style="color: red;">Failed to load products.</p>';
+        });
+    });
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
     if (DOM.productsContainer) initProductsPage();
@@ -199,10 +227,10 @@ const setupSearchEventListeners = () => {
     });
 
     document.addEventListener('click', e => {
-        if (!DOM.searchContainer.contains(e.target) && 
-            e.target !== DOM.searchToggle && 
+        if (!DOM.searchContainer.contains(e.target) &&
+            e.target !== DOM.searchToggle &&
             e.target !== DOM.mobileSearchToggle &&
-            !e.target.closest('#search-toggle') && 
+            !e.target.closest('#search-toggle') &&
             !e.target.closest('#mobile-search-toggle')) {
             DOM.searchContainer.classList.remove('visible');
             resetSearch();
@@ -250,7 +278,7 @@ const setupPriceFilterEventListeners = () => {
 
     DOM.applyPriceFilterBtn.addEventListener('click', () => {
         if (isSearching || !DOM.productsContainer) return;
-        const products = currentSubcategory ? 
+        const products = currentSubcategory ?
             productsData[currentCategory]?.[currentSubcategory]?.filter(p => p.price >= minPrice && p.price <= maxPrice) :
             Object.values(productsData[currentCategory] || {}).flat().filter(p => p.price >= minPrice && p.price <= maxPrice);
         renderProducts(products || [], DOM.productsContainer);
