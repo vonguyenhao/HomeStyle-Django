@@ -1,4 +1,5 @@
 // Current state
+console.log('productsData:', window.productsData);
 let currentCategory = 'living-room';
 let currentSubcategory = 'sofas';
 let isSearching = false;
@@ -51,6 +52,7 @@ const getUrlParams = () => {
 
 let productsData = {};
 
+console.log('final productsData:', productsData);
 function groupProductsByCategory(products) {
     const grouped = {};
     products.forEach(p => {
@@ -61,26 +63,28 @@ function groupProductsByCategory(products) {
     return grouped;
 }
 
-fetch('/api/products/')
-    .then(res => res.json())
-    .then(data => {
-        productsData = groupProductsByCategory(data.products);
-        document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
+    // Bắt đầu fetch khi DOM đã sẵn sàng
+    fetch('/api/products/')
+        .then(res => res.json())
+        .then(data => {
+            if (data && data.products && data.products.length > 0) {
+                productsData = groupProductsByCategory(data.products);
+                console.log('Dùng dữ liệu từ API');
+            } else {
+                console.warn('API trả về trống, dùng dữ liệu tạm thời.');
+                productsData = window.productsData;
+            }
+
+            if (DOM.productsContainer) initProductsPage();
+            else setupSearchEventListeners();
+        })
+        .catch(err => {
+            console.error('Lỗi API, fallback dữ liệu tĩnh:', err);
+            productsData = window.productsData;
             if (DOM.productsContainer) initProductsPage();
             else setupSearchEventListeners();
         });
-    })
-    .catch(err => {
-        console.error('Failed to load products from API:', err);
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('products-container').innerHTML = '<p style="color: red;">Failed to load products.</p>';
-        });
-    });
-
-// Initialize page
-document.addEventListener('DOMContentLoaded', () => {
-    if (DOM.productsContainer) initProductsPage();
-    else setupSearchEventListeners();
 });
 
 const initProductsPage = () => {
@@ -159,19 +163,24 @@ const setupCategoryEventListeners = () => {
             DOM.categoryHeaders.forEach(h => h.classList.remove('active'));
             header.classList.add('active');
             currentCategory = category;
-
             const isMobile = window.innerWidth <= 768;
+
+            // Tìm subcategory đầu tiên
+            let firstSubKey = Object.keys(productsData[category] || {})[0] || null;
+            currentSubcategory = isMobile ? null : firstSubKey;
+
+            // Highlight UI
             DOM.subcategories.forEach(sub => sub.classList.remove('active'));
-            let firstSub;
-            if (!isMobile) {
-                firstSub = subcategoriesContainer?.querySelector('.subcategory');
-                if (firstSub) {
-                    firstSub.classList.add('active');
-                    currentSubcategory = firstSub.dataset.subcategory;
-                }
-            } else {
-                currentSubcategory = null;
+            if (!isMobile && firstSubKey) {
+                const subEl = subcategoriesContainer?.querySelector(`.subcategory[data-subcategory="${firstSubKey}"]`);
+                subEl?.classList.add('active');
             }
+            // Load sản phẩm và cập nhật URL/UI
+            updatePageTitle();
+            updateSidebarSelection(currentCategory, currentSubcategory);
+            !isSearching && loadProducts(currentCategory, currentSubcategory, DOM.productsContainer);
+            updateUrl();
+
 
             updatePageTitle();
             !isSearching && loadProducts(currentCategory, isMobile ? null : currentSubcategory, DOM.productsContainer);
