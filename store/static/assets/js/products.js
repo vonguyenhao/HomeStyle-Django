@@ -1,7 +1,6 @@
 // Current state
 console.log('productsData:', window.productsData);
-let currentCategory = 'living-room';
-let currentSubcategory = 'sofas';
+let currentCategory, currentSubcategory;
 let isSearching = false;
 let minPrice = 0;
 let maxPrice = 2000;
@@ -160,30 +159,26 @@ const setupCategoryEventListeners = () => {
             }
 
             if (category === currentCategory && window.innerWidth > 768) return;
+
             DOM.categoryHeaders.forEach(h => h.classList.remove('active'));
             header.classList.add('active');
             currentCategory = category;
-            const isMobile = window.innerWidth <= 768;
 
-            // Tìm subcategory đầu tiên
+            const isMobile = window.innerWidth <= 768;
             let firstSubKey = Object.keys(productsData[category] || {})[0] || null;
             currentSubcategory = isMobile ? null : firstSubKey;
 
-            // Highlight UI
             DOM.subcategories.forEach(sub => sub.classList.remove('active'));
             if (!isMobile && firstSubKey) {
                 const subEl = subcategoriesContainer?.querySelector(`.subcategory[data-subcategory="${firstSubKey}"]`);
                 subEl?.classList.add('active');
             }
-            // Load sản phẩm và cập nhật URL/UI
+
             updatePageTitle();
             updateSidebarSelection(currentCategory, currentSubcategory);
-            !isSearching && loadProducts(currentCategory, currentSubcategory, DOM.productsContainer);
-            updateUrl();
-
-
-            updatePageTitle();
-            !isSearching && loadProducts(currentCategory, isMobile ? null : currentSubcategory, DOM.productsContainer);
+            if (!isSearching) {
+                loadProducts(currentCategory, currentSubcategory, DOM.productsContainer);
+            }
             updateUrl();
         });
     });
@@ -326,29 +321,25 @@ const loadProducts = (category, subcategory, container) => {
     setTimeout(() => {
         try {
             let products;
-            if (subcategory) {
-                products = productsData[category]?.[subcategory];
-                if (!products && productsData[category]) {
-                    const firstSubcategory = Object.keys(productsData[category])[0];
-                    if (firstSubcategory) {
-                        currentSubcategory = firstSubcategory;
-                        products = productsData[category][firstSubcategory];
-                        updateUrl();
-                        updateSidebarSelection(category, firstSubcategory);
-                    }
-                }
+
+            // if have subcategory specific
+            if (subcategory !== null && subcategory !== undefined) {
+                products = productsData[category]?.[subcategory] || [];
+
             } else {
+                // if don't have subcategory, merge all 
                 products = Object.values(productsData[category] || {}).flat();
-                currentSubcategory = null;
-                updateSidebarSelection(category, null);
             }
-            renderProducts(products || [], container);
+
+            renderProducts(products, container);
+
         } catch (e) {
             console.error(`Error loading products for ${category}/${subcategory || 'all'}:`, e);
             container.innerHTML = '<div class="loading">No products found in this category.</div>';
         }
     }, 300);
 };
+
 
 const renderProducts = (products, container) => {
     if (!container) return;
@@ -452,10 +443,11 @@ const updateSidebarSelection = (category, subcategory) => {
 const updateUrl = () => {
     const url = new URL(window.location);
     url.searchParams.set('category', currentCategory);
-    if (currentSubcategory) {
+    if (currentSubcategory !== null && currentSubcategory !== undefined) {
         url.searchParams.set('subcategory', currentSubcategory);
     } else {
         url.searchParams.delete('subcategory');
     }
     window.history.pushState({}, '', url);
 };
+
